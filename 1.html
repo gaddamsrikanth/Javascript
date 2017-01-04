@@ -4,7 +4,24 @@
 
 </head>
 <body>
-<p id="demo">Changing content</p>
-<button type="button" onclick="document.getElementById('demo').innerHTML='Hello'">Click Here</button>
+<p id = "demo">Hiding/Showing Content</p>
+
+<button id = "b1" onclick='f1()'>Hidden</button>
+
+<script>
+    function f1() {
+
+        if(document.getElementById('b1').innerHTML == "Hidden")
+        {
+        document.getElementById('demo').style.display='none';
+        document.getElementById('b1').innerHTML="Show";
+        }
+        else
+        {
+            document.getElementById('demo').style.display='block';
+            document.getElementById('b1').innerHTML="Hidden";
+        }
+    }
+    </script>
 </body>
 </html>
