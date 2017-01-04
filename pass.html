@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<input type = "password" id = 't1' placeholder = "Enter password" >
+<input type = "password" oninput = "check();" id = 't2' placeholder = "Re-Enter your password">
+<p id="msg"></p>
+<script>
+    function check(){
+        if(document.getElementById('t2').value == document.getElementById('t1').value){  document.getElementById('msg').style.display="none";
+            window.alert('password matched');
+
+        }
+        else{
+            document.getElementById('msg').innerHTML = "Not matching!";
+        }
+    }
+</script>
+
+
+</body>
+</html>
