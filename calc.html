@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+<input type="number" id="t1" value="" placeholder="Enter the first number">
+<input type="number" id="t2" value="" placeholder="Enter the second number">
+<br><br>
+<input type="number" id="t3"  placeholder="Your ans">
+<br><br>
+<button id = "add" onclick='f1(1);'>Add</button>
+<button id = "sub" onclick='f1(2);'>Sub</button>
+<button id = "mul" onclick='f1(3);'>Mul</button>
+<button id = "div" onclick='f1(4);'>Div</button>
+
+<script>
+    function f1(a)
+    {
+        var one, two;
+        switch (a) {
+            case 1:
+                one = document.getElementById('t1').value;
+                two = document.getElementById('t2').value;
+                document.getElementById('t3').value = parseInt(one)+parseInt(two);
+                break;
+
+
+            case 2:
+                one = document.getElementById('t1').value;
+                two = document.getElementById('t2').value;
+                document.getElementById('t3').value = parseInt(one)-parseInt(two);
+                break;
+
+            case 3:
+                one = document.getElementById('t1').value;
+                two = document.getElementById('t2').value;
+                document.getElementById('t3').value = parseInt(one)*parseInt(two);
+                break;
+
+            case 4:
+                one = document.getElementById('t1').value;
+                two = document.getElementById('t2').value;
+                document.getElementById('t3').value = parseInt(one)/parseInt(two);
+                break;
+        }
+    }
+</script>
+</body>
+</html>
