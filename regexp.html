@@ -14,7 +14,8 @@
           var a = str.length;
           var pattern = /cro/;
           var b = pattern.test(str);
-          window.alert(b);
+          var c = str.search(pattern);
+          window.alert(b+" "+c);
           var text = str.replace(/(w|M|i)/g,"o");
           document.getElementById("demo").innerHTML = text;
       }
