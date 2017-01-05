@@ -6,18 +6,18 @@
 </head>
 <body>
     <button id="b1" onclick="function1()">Click!</button>
-    <p id="demo">Microsft windows</p>
+    <p id="demo">Microsft < windows</p>
     <script>
       function  function1()
       {
           var str = document.getElementById("demo").innerHTML;
           var a = str.length;
-          var pattern = /cro/;
+         /* var pattern = /cro/;
           var b = pattern.test(str);
           var c = str.search(pattern);
-          window.alert(b+" "+c);
-          var text = str.replace(/(w|M|i)/g,"o");
-          document.getElementById("demo").innerHTML = text;
+          window.alert(b+" "+c);*/
+          str = str.replace(/[&\/\\#,+()$~%.'":*?<;lt]/g,"\<");
+          document.getElementById("demo").innerHTML = str;
       }
       </script>
 </body>
