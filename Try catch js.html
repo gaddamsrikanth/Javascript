@@ -5,23 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-
+<p>Enter a username</p>
+<input id="i" type="text">
+<p id="op"></p>
+<button type="button" onclick="function1()">Click!</button>
 <script>
+    var ip;
+    var pattern = /[a-z]|[0-9]/;
     function function1() {
 
-
+        ip = document.getElementById("i").value;
         try {
-            adddddlert("asdas");
-
-
+            if (pattern.test(ip)==false) throw "Enter valid name";
+            else throw "Valid name";
         }
         catch (error) {
-            document.getElementById("p").innerHTML = error.message;
-            window.alert(error);
+            document.getElementById("op").innerHTML = error;
         }
     }
     </script>
 
-<p id="p"  onclick= "location.href= 'https://www.google.com';">sadsadasd</p>
+
 </body>
 </html>
