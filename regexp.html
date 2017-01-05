@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="b1" onclick="function1()">Click!</button>
+    <p id="demo">Microsft windows</p>
+    <script>
+      function  function1()
+      {
+          var str = document.getElementById("demo").innerHTML;
+          var a = str.length;
+          var pattern = /cro/;
+          var b = pattern.test(str);
+          window.alert(b);
+          var text = str.replace(/(w|M|i)/g,"o");
+          document.getElementById("demo").innerHTML = text;
+      }
+      </script>
+</body>
+</html>
