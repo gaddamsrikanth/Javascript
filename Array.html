@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="demo"></p>
+<p id="demo1"></p>
+    <script>
+        var c = [];
+        var a = ['A','B','C','D','E'];
+        var b = ['z','x','c','v','r'];
+        a.pop();
+        a.push('F');
+        a.shift();
+        a.unshift('L');
+
+        document.getElementById("demo").innerHTML=a;
+        //document.getElementById("demo1").innerHTML = a.sort() +" " +a.reverse();
+        for(var i=0;i<a.length;i++)
+        {
+            c[i] = a[i].concat(b[i]);
+        }
+        window.alert(c);
+    </script>
+
+</body>
+</html>
