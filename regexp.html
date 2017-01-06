@@ -5,8 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+<iframe src="1.html" width="500" height="500"></iframe>
     <button id="b1" onclick="function1()">Click!</button>
-    <p id="demo">Microsft < windows</p>
+    <p id="demo">Microsft [] < windows</p>
     <script>
       function  function1()
       {
@@ -16,9 +17,10 @@
           var b = pattern.test(str);
           var c = str.search(pattern);
           window.alert(b+" "+c);*/
-          str = str.replace(/[&\/\\#,+()$~%.'":*?<;lt]/g,"\<");
+          str = str.replace(/[&\/\\#,+()$~%.'":*?<>]/g,"&gt");
           document.getElementById("demo").innerHTML = str;
       }
+      alert();
       </script>
 </body>
 </html>

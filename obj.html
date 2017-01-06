@@ -5,28 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<input type="text" id="name" placeholder="Enter Name">
-<input type="text" id="lname" placeholder="Enter Lastname">
-<input type="text" id="age" placeholder="Enter Age" >
-<button onclick="f2();">CLICK!</button>
-<script>
+<input type="file" id="fileinput" />
+<script type="text/javascript">
+    function readSingleFile(evt) {
+        //Retrieve the first (and only!) File from the FileList object
+        var f = evt.target.files[0];
 
-
-    function f1(first,last,blood) {
-        var fname = first;
-        var lname = last;
-
-        f1.prototype.list = function () {
-            window.alert(fname + " " +lname);
+        if (f) {
+            var r = new FileReader();
+            r.onload = function(e) {
+                var contents = e.target.result;
+                alert( "Got the file.n"
+                    +"name: " + f.name + "n"
+                    +"type: " + f.type + "n"
+                    +"size: " + f.size + " bytesn"
+                    + "starts with: " + contents.substr(0, contents.indexOf("\n"))
+                );
+            }
+            r.readAsText(f);
+        } else {
+            alert("Failed to load file");
         }
     }
-    function f2() {
-        first = document.getElementById('name').value;
-        last = document.getElementById('lname').value;
-        new f1(first,last," ").list();
-    }
 
-
+    document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
 </script>
 </body>
 </html>

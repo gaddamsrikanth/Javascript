@@ -6,11 +6,13 @@
 <body>
 <p id = "demo">Hiding/Showing Content</p>
 
-<button id = "b1" onclick='f1()'>Hidden</button>
+<button id = "add" onclick='f1(1)'>Add</button>
+<button id = "sub" onclick='f1(2)'>Sub</button>
+<button id = "mul" onclick='f1'
 
 <script>
-    function f1() {
-        window.alert("Alert");
+    function f1(var a) {
+
         if(document.getElementById('b1').innerHTML == "Hidden")
         {
         document.getElementById('demo').style.display='none';
