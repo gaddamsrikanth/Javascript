@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>CSV Parser</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript">
+    </script>
+    <style type="text/css">
+        body { font-family:arial, helvetica, sans-serif; font-weight:normal; font-size:13px; color:#000; text-align:left; margin:3px 0px; }
+        #wrap { width:100px; height:100px; margin:20px;  }
+    </style>
+</head>
+
+<body>
+
+<div id="wrap">
+
+</div>
+County Code:
+<p id = "cc"></p>
+&nbsp;
+<form>
+<div id="abcd">
+</div></form>
+<div id="right">
+</div>
+
+
+<button id="b1" onclick="goRight();" style="margin-left: 10%" >&gt;</button>
+<br>
+<br>
+<button id="b2" onclick="goLeft();" style="margin-left: 10%" >&lt;</button>
+<br>
+<br>
+<button id="b3" onclick="allGoright();" style="margin-left: 10%">&gt;&gt;</button>
+<br>
+<br>
+<button id="b4" onclick="allGoleft();" style="margin-left: 10%">&lt;&lt;</button>
+<br>
+<br>
+<button id="b5" onclick="" style="margin-left: 10%">Click to fetch!</button>
+<script type="text/javascript">
+    function function1(){
+        var x = document.getElementById("select1").value;
+        alert(x);
+        document.getElementById("cc").innerHTML = x;
+        $.get('locations.csv',function(data)
+            {
+                var rows1 = data.split("\n");
+                var abc = rows1[0].split(",");
+                var a = abc.length;
+                alert(a);
+                var build = "";
+                for(var i=0;i<a;i++) {
+                        build += abc[i]+"<input type ='checkbox' name='fieldname' value ="+abc[i]+"><br><br>";
+
+                }
+                    rows1.forEach(function search(thisRow1){
+                        var c1 = "";
+                        c1 = thisRow1.split(",");
+                        if(c1[5].search(x))
+                        {
+                           alert(c1);
+                        }
+                    }
+                )
+                $('#abcd').append(build);
+            });
+        }
+    $.get('zip.csv', function(data) {
+        var build = '<select id = "select1" onchange = "function1()">\n<option value="select code"> Select Code</option>';
+        var rows = data.split("\n");
+        rows.forEach( function getvalues(thisRow) {
+            var columns = thisRow.split(",");
+                build +=  "<option value =  "+columns[1]+" >" + columns[0] + "</option>\n"
+        })
+        build += "</select>\n";
+        $('#wrap').append(build);
+    });
+    function goRight() {
+        var build = document.forms[0];
+        var put = "";
+        for (var i = 0; i < build.length; i++) {
+            if (build[i].checked) {
+                put += build[i].value + "<input type = 'checkbox' value=" + build[i].value + "><br><br>";
+            }
+        }
+        $('#right').append(put);
+
+    }
+    function allGoright() {
+        document.getElementById('right').innerHTML = "";
+        document.getElementById('right').innerHTML = document.getElementById('abcd').innerHTML;
+        
+    }
+    function () {
+        
+    }
+</script>
+
+</body>
+
+</html>
