@@ -7,73 +7,154 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript">
     </script>
     <style type="text/css">
-        body { font-family:arial, helvetica, sans-serif; font-weight:normal; font-size:13px; color:#000; text-align:left; margin:3px 0px; }
-        #wrap { width:100px; height:100px; margin:20px;  }
+
+
+        body {
+            font-family: arial, helvetica, sans-serif;
+            font-weight: normal;
+            font-size: 13px;
+            color: #000;
+            text-align: left;
+            margin: 3px 0px;
+        }
+
+        #wrap {
+            width: 300px;
+            height: 100px;
+            margin: 20px;
+            border: 1px dashed black;
+        }
+
+        #abcd {
+            width: 300px;
+            height: 330px;
+            border: 1px dashed black;
+            margin-top: 5px;
+
+        }
+
+        #btns {
+            width: 80px;
+            height: 330px;
+            border: 1px dashed black;
+            margin-top: 5px;
+
+        }
+
+        #right {
+            width: 400px;
+            height: 350px;
+            border: 1px dashed black;
+            margin-top: 20px;
+            margin-left: 5px;
+        }
+
+        #left {
+            width: 400px;
+            height: 350px;
+            border: 1px dashed black;
+            margin-top: 20px;
+            margin-left: 5px;
+            position: absolute;
+        }
+
+        #main {
+            width: 830px;
+            height: 450px;
+            border: 1px dashed black;
+            margin-top: 20px;
+            margin-left: 5px;
+            position: relative;
+        }
+
+        #main1 {
+            width: 1320px;
+            height: 720px;
+            position: absolute;
+        }
+        #data {
+            width: 430px;
+            height: 700px;
+            border: 1px dashed black;
+            margin-top: 10px;
+        }
+        #func{
+            width: 835px;
+            height: 100%;
+            border: 1px dashed black;
+            position: relative;
+        }
     </style>
 </head>
 
 <body>
+<div id="main1">
+    <div id = "func">
+    <div id="wrap">
 
-<div id="wrap">
+    </div>
+    County Code:
+    <p id="cc"></p>
+    &nbsp;
+    <div id="main">
+        <div id="left">
+            <form>
+                <div id="abcd" style="float: left;">
+                </div>
+            </form>
+            <div id="btns" style="float: right;">
+                <button id="b1" onclick="goRight();" style="margin-left: 10%">&gt;</button>
+                <br>
+                <br>
+                <button id="b2" onclick="goLeft();" style="margin-left: 10%">&lt;</button>
+                <br>
+                <br>
+                <button id="b3" onclick="allGoRight();" style="margin-left: 10%">&gt;&gt;</button>
+                <br>
+                <br>
+                <button id="b4" onclick="allGoLeft();" style="margin-left: 10%">&lt;&lt;</button>
+                <br>
+                <br>
 
+            </div>
+
+            </form>
+        </div>
+        <form>
+            <div id="right" style="float: right;">
+            </div>
+        </form>
+    </div>
+    </div>
+    <div id="data" style="float: right;">
+
+    </div>
 </div>
-County Code:
-<p id = "cc"></p>
-&nbsp;
-<form>
-<div id="abcd">
-</div></form>
-<div id="right">
-</div>
-
-
-<button id="b1" onclick="goRight();" style="margin-left: 10%" >&gt;</button>
-<br>
-<br>
-<button id="b2" onclick="goLeft();" style="margin-left: 10%" >&lt;</button>
-<br>
-<br>
-<button id="b3" onclick="allGoright();" style="margin-left: 10%">&gt;&gt;</button>
-<br>
-<br>
-<button id="b4" onclick="allGoleft();" style="margin-left: 10%">&lt;&lt;</button>
-<br>
-<br>
-<button id="b5" onclick="" style="margin-left: 10%">Click to fetch!</button>
 <script type="text/javascript">
-    function function1(){
+    function function1() {
         var x = document.getElementById("select1").value;
         alert(x);
         document.getElementById("cc").innerHTML = x;
-        $.get('locations.csv',function(data)
-            {
-                var rows1 = data.split("\n");
-                var abc = rows1[0].split(",");
-                var a = abc.length;
-                alert(a);
-                var build = "";
-                for(var i=0;i<a;i++) {
-                        build += abc[i]+"<input type ='checkbox' name='fieldname' value ="+abc[i]+"><br><br>";
+        $.get('locations.csv', function (data) {
+            var rows1 = data.split("\n");
+            var abc = rows1[0].split(",");
+            var a = abc.length;
+            alert(a);
+            var build = "";
+            for (var i = 0; i < a; i++) {
+                build += abc[i] + "<input type ='checkbox' name='fieldname' value =" + abc[i] + "><br><br>";
 
-                }
-                    rows1.forEach(function search(thisRow1){
-                        var c1 = "";
-                        c1 = thisRow1.split(",");
-                        if(c1[5].search(x))
-                        {
-                           alert(c1);
-                        }
-                    }
-                )
-                $('#abcd').append(build);
-            });
-        }
-    $.get('zip.csv', function(data) {
+            }
+
+            $('#abcd').append(build);
+        });
+    }
+    $.get('zip.csv', function (data) {
         var build = '<select id = "select1" onchange = "function1()">\n<option value="select code"> Select Code</option>';
         var rows = data.split("\n");
-        rows.forEach( function getvalues(thisRow) {
+        rows.forEach(function getvalues(thisRow) {
             var columns = thisRow.split(",");
-                build +=  "<option value =  "+columns[1]+" >" + columns[0] + "</option>\n"
+            build += "<option value =  " + columns[1] + " >" + columns[0] + "</option>\n"
         })
         build += "</select>\n";
         $('#wrap').append(build);
@@ -85,18 +166,99 @@ County Code:
             if (build[i].checked) {
                 put += build[i].value + "<input type = 'checkbox' value=" + build[i].value + "><br><br>";
             }
-        }
-        $('#right').append(put);
 
+        }
+        document.getElementById('right').innerHTML = "";
+        $('#right').append(put);
+        show();
     }
-    function allGoright() {
+    function allGoRight() {
         document.getElementById('right').innerHTML = "";
         document.getElementById('right').innerHTML = document.getElementById('abcd').innerHTML;
-        
+        show();
     }
-    function () {
-        
+    function goLeft() {
+        var build = document.forms[1];
+        var put = "";
+        for (var i = 0; i < build.length; i++) {
+            if (!build[i].checked) {
+                put += build[i].value + "<input type = 'checkbox' value=" + build[i].value + "><br><br>";
+            }
+        }
+        document.getElementById('right').innerHTML = "";
+        $('#right').append(put);
+        show();
+
     }
+    function allGoLeft() {
+        document.getElementById('right').innerHTML = "";
+        show();
+
+    }
+    function show() {/*
+        var a = document.forms[1];
+        var chk = document.getElementById('cc').innerHTML;
+        $.get('locations.csv', function (data) {
+            var build = '<table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width="100%">\n';
+            var rows = data.split("\n");
+            var fi = rows[0].split(",");
+            var k = 0;
+            rows.forEach(function getvalues(thisRow) {
+                build += "<tr>\n";
+                var columns = thisRow.split(",");
+                if (thisRow.search(chk) != -1) {
+                    for (var i = 0; i < columns.length; i++) {
+                        if (a[k] == fi[i]) {
+                            build += "<td>" + columns[i] + "</td>\n";
+                            k++;
+                        }
+                    }
+                }
+                build += "</tr>\n";
+            })
+            build += "</table>";
+            $('#data').append(build);
+        });
+*/
+        var chk = document.getElementById('cc').innerHTML;
+        var build1 = document.forms[1];
+        $.get('locations.csv', function (data) {
+            var build = '<table border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width="100%">\n';
+            var id1 = [];
+            var row = data.split("\n");
+            var att1 = row[0].split(",");
+            for (var i = 0; i < build1.length; i++) {
+                for (var j = 0; j < att1.length; j++) {
+                    if (build1[i].value == att1[j]) {
+                        id1[j] = j;
+                    }
+                }
+
+            }
+
+            build += "<tr>\n";
+            for (var i = 0; i < build1.length; i++) {
+                build += "<td>" + build1[i].value + "</td>\n";
+            }
+            build += "</tr>\n";
+            row.forEach(function getvalues(thisRow) {
+                var att = thisRow.split(",");
+                if (thisRow.search(chk) != -1) {
+                    build += "<tr>\n";
+                    for (var i = 0; i < att.length; i++) {
+                        if (id1[i] == i) {
+                            build += "<td>" + att[i] + "</td>\n";
+                        }
+                    }
+                    build += "</tr>\n";
+                }
+            })
+            build += "</table>";
+            document.getElementById('data').innerHTML = "";
+            $('#data').append(build);
+        });
+    }
+
 </script>
 
 </body>
