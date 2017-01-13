@@ -115,6 +115,12 @@
                 <button id="b4" onclick="allGoLeft();" style="margin-left: 10%">&lt;&lt;</button>
                 <br>
                 <br>
+                <button id="b5" onclick="goUp();" style="margin-left: 10%">Up</button>
+                <br>
+                <br>
+                <button id="b6" onclick="goDown();" style="margin-left: 10%">Down</button>
+                <br>
+                <br>
 
             </div>
 
@@ -257,6 +263,46 @@
             document.getElementById('data').innerHTML = "";
             $('#data').append(build);
         });
+    }
+function goUp()
+{
+
+    var a = document.forms[1];
+    var b = "";
+    for(var i=0;i<a.length;i++)
+    {
+        if(a[i].checked){
+            b += a[i].value+"<input type='checkbox' value="+a[i].value+" name='fieldname'><br><br>";
+        }
+    }
+    for(var i=0;i<a.length;i++)
+    {
+        if(!a[i].checked){
+            b += a[i].value+"<input type='checkbox' value="+a[i].value+" name='fieldname'><br><br>";
+        }
+    }
+    document.getElementById('right').innerHTML = "";
+    $('#right').append(b);
+}
+    function goDown()
+    {
+
+        var a = document.forms[1];
+        var b = "";
+        for(var i=0;i<a.length;i++)
+        {
+            if(!a[i].checked){
+                b += a[i].value+"<input type='checkbox' value="+a[i].value+" name='fieldname'><br><br>";
+            }
+        }
+        for(var i=0;i<a.length;i++)
+        {
+            if(a[i].checked){
+                b += a[i].value+"<input type='checkbox' value="+a[i].value+" name='fieldname'><br><br>";
+            }
+        }
+        document.getElementById('right').innerHTML = "";
+        $('#right').append(b);
     }
 
 </script>
